@@ -1,0 +1,10 @@
+include ./head.pug
+script(src="/socket.io/socket.io.js")
+script(src="../chat.js")
+
+body
+    h1= title
+    ul(id="messages")
+    form(id="ff", action="", onsubmit="return false")
+        input(id="msg", autocomplete="off")
+        button(type="submit") Send
