@@ -1,10 +1,12 @@
-var socket = io()
+'use strict';
+var socket = io();
 var form;
 var message_box;
+
 function submit() {
     socket.emit('chat message', form.msg.value);
     message_box.appendChild(createMsg(form.msg.value));
-    form.msg.value = ""
+    form.msg.value = "";
 }
 
 function createMsg(msg) {
@@ -30,4 +32,4 @@ window.onload = function() {
     socket.on('chat message', function(msg){
         message_box.appendChild(createMsg(msg));
     });
-}
+};
