@@ -3,8 +3,9 @@ script(src="/socket.io/socket.io.js")
 script(src="../chat.js")
 
 body
-    h1= title
-    h2(id="users_num")= "Users online: "
+    div(id="header")
+        h1= title
+        h2(id="users_num")= "Users online: "
     hr
     ul(id="messages")
     form(id="ff", action="", onsubmit="return false")
