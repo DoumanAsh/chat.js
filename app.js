@@ -17,21 +17,24 @@ app.get('/', function (req, res) {
 });
 
 io.on('connection', function(socket) {
-    users_num += 1;
-    console.log('>a user connected');
-    socket.broadcast.emit('enter', null);
+    socket.on("reg_user", function(name) {
+        users_num += 1;
+        socket.username = name;
+        console.log('>a user connected');
+        socket.broadcast.emit('enter', name);
 
-    io.emit("up_user_num", users_num);
+        io.emit("up_user_num", users_num);
 
-    socket.on('disconnect', function(){
-        console.log('>user disconnected');
-        users_num -= 1;
-        io.emit('left', {user_num: users_num});
-    });
+        socket.on('disconnect', function() {
+            console.log('>user disconnected');
+            users_num -= 1;
+            io.emit('left', {user_name: socket.username, user_num: users_num});
+        });
 
-    socket.on('chat message', function(msg){
-      console.log('message: ' + msg);
-      socket.broadcast.emit('chat message', msg);
+        socket.on('chat message', function(msg){
+          console.log('message: ' + msg);
+          socket.broadcast.emit('chat message', {user_name: socket.username, msg: msg});
+        });
     });
 });
 
