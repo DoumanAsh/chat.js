@@ -3,6 +3,7 @@ var form;
 var message_box;
 function submit() {
     socket.emit('chat message', form.msg.value);
+    message_box.appendChild(createMsg(form.msg.value));
     form.msg.value = ""
 }
 
