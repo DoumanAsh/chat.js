@@ -7,9 +7,12 @@ var my_name = window.prompt("Please enter your name", "Anonym");
 
 ///Sends message to server.
 function sendMsg() {
-    socket.emit('chat message', form.msg.value);
-    message_box.appendChild(createMsg(form.msg.value, my_name));
-    form.msg.value = "";
+    if (form.msg.value) {
+        //Do not send empty message
+        socket.emit('chat message', form.msg.value);
+        message_box.appendChild(createMsg(form.msg.value, my_name));
+        form.msg.value = "";
+    }
 }
 
 ///Creates list element with message.
@@ -79,4 +82,6 @@ window.onload = function() {
     socket.on('chat message', function(msg){
         addMsg(msg.msg, msg.user_name);
     });
+
+    document.getElementById('msg').focus();
 };
