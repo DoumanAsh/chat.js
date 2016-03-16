@@ -5,24 +5,31 @@ var message_box;
 var users_num;
 var my_name = window.prompt("Please enter your name", "Anonym");
 
+///Sends message to server.
 function sendMsg() {
     socket.emit('chat message', form.msg.value);
     message_box.appendChild(createMsg(form.msg.value, my_name));
     form.msg.value = "";
 }
 
+///Creates list element with message.
 function createMsg(msg, name) {
     var li = document.createElement("li");
 
     if (name) {
         var span_name = document.createElement("span");
         span_name.className += "bold";
-        span_name.appendChild(document.createTextNode(name))
+        span_name.appendChild(document.createTextNode(name));
         li.appendChild(span_name);
         msg = ": " + msg;
     }
     li.appendChild(document.createTextNode(msg));
     return li;
+}
+
+///Adds message to chat window
+function addMsg(msg, name) {
+    message_box.appendChild(createMsg(msg, name));
 }
 
 function updateUserNum(num) {
@@ -34,7 +41,7 @@ window.keydown = function(event) {
     if (event.which === 13) {
         sendMsg();
     }
-}
+};
 
 window.onload = function() {
     form = document.getElementById('ff');
@@ -61,15 +68,15 @@ window.onload = function() {
     });
 
     socket.on('left', function(msg) {
-        message_box.appendChild(createMsg(">" + msg.user_name + " left chat :("));
+        addMsg(">" + msg.user_name + " left chat :(");
         updateUserNum(msg.user_num);
     });
 
     socket.on('enter', function(name){
-        message_box.appendChild(createMsg(">" + name + " enters chat"));
+        addMsg(">" + name + " enters chat");
     });
 
     socket.on('chat message', function(msg){
-        message_box.appendChild(createMsg(msg.msg, msg.user_name));
+        addMsg(msg.msg, msg.user_name);
     });
 };

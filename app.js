@@ -29,7 +29,6 @@ io.on('connection', function(socket) {
         }
 
         socket.username = name;
-        console.log(socket)
         console.log('>a user connected');
         socket.broadcast.emit('enter', name);
 

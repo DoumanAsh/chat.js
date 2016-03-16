@@ -11,6 +11,7 @@ body {
     list-style-type: none;
     margin: 0;
     padding: 0;
+    margin-bottom: 50px;
 }
 #messages li {
     padding: 5px 10px;
@@ -23,6 +24,13 @@ body {
     overflow: auto;
     padding: 5px;
     background: rgb(130, 224, 255);
+    position: fixed;
+    height: auto;
+    width: 100%;
+}
+
+.chat {
+    margin-top: 65px;
 }
 
 .chat form {
