@@ -5,7 +5,9 @@ script(src="../chat.js")
 body
     div(id="header")
         h1= title
-        h2(id="users_num")= "Users online: "
+        h2(class="left", id="users_num")= "Users online: "
+        h2(class="right", id="name")= "Name: "
+
     hr
     div(class="chat")
         ul(id="messages")

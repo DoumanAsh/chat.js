@@ -47,6 +47,8 @@ window.onload = function() {
         my_name = "Anonym";
     }
 
+    document.getElementById('name').innerHTML = "Name: " + my_name;
+
     socket.emit("reg_user", my_name);
 
     socket.on("up_user_num", function(num) {
