@@ -19,7 +19,17 @@ app.get('/', function (req, res) {
 io.on('connection', function(socket) {
     socket.on("reg_user", function(name) {
         users_num += 1;
+
+        for (var sock_id in io.sockets.connected) {
+            if (io.sockets.connected[sock_id].username === name) {
+                name = name + "_" + socket.id.slice(-4);
+                socket.emit("new_name", name);
+                break;
+            }
+        }
+
         socket.username = name;
+        console.log(socket)
         console.log('>a user connected');
         socket.broadcast.emit('enter', name);
 

@@ -55,6 +55,11 @@ window.onload = function() {
         updateUserNum(num);
     });
 
+    socket.on("new_name", function(name) {
+        document.getElementById('name').innerHTML = "Name: " + name;
+        window.alert("Your name is already used. :(\nYou can stick with name: " + name);
+    });
+
     socket.on('left', function(msg) {
         message_box.appendChild(createMsg(">" + msg.user_name + " left chat :("));
         updateUserNum(msg.user_num);
