@@ -19,8 +19,8 @@ function createMsg(msg, name) {
         span_name.className += "bold";
         span_name.appendChild(document.createTextNode(name))
         li.appendChild(span_name);
+        msg = ": " + msg;
     }
-    msg = ": " + msg;
     li.appendChild(document.createTextNode(msg));
     return li;
 }
