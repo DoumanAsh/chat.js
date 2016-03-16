@@ -19,6 +19,7 @@ function sendMsg() {
 function createMsg(msg, name) {
     var li = document.createElement("li");
 
+    li.appendChild(document.createTextNode((new Date()).strftime("%H:%M:%S ")));
     if (name) {
         var span_name = document.createElement("span");
 
@@ -28,10 +29,9 @@ function createMsg(msg, name) {
             text_box.value = text_box.value + name + ": ";
         };
 
-        span_name.appendChild(document.createTextNode(name));
+        span_name.appendChild(document.createTextNode("<" + name + "> "));
 
         li.appendChild(span_name);
-        msg = ": " + msg;
     }
     li.appendChild(document.createTextNode(msg));
     return li;
