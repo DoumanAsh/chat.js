@@ -13,9 +13,14 @@ function sendMsg() {
 
 function createMsg(msg, name) {
     var li = document.createElement("li");
+
     if (name) {
-        msg = name + ": " + msg;
+        var span_name = document.createElement("span");
+        span_name.className += "bold";
+        span_name.appendChild(document.createTextNode(name))
+        li.appendChild(span_name);
     }
+    msg = ": " + msg;
     li.appendChild(document.createTextNode(msg));
     return li;
 }
