@@ -21,8 +21,15 @@ function createMsg(msg, name) {
 
     if (name) {
         var span_name = document.createElement("span");
-        span_name.className += "bold";
+
+        span_name.className += "chat_name";
+        span_name.onclick = function() {
+            var text_box = document.getElementById('msg');
+            text_box.value = text_box.value + name + ": ";
+        };
+
         span_name.appendChild(document.createTextNode(name));
+
         li.appendChild(span_name);
         msg = ": " + msg;
     }

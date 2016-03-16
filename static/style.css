@@ -53,8 +53,9 @@ body {
     padding: 10px;
 }
 
-.bold {
+.chat_name {
     font-weight: bold;
+    cursor: pointer;
 }
 
 .left {
