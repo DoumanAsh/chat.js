@@ -32,7 +32,16 @@ io.on('connection', function(socket) {
         console.log('>a user connected');
         socket.broadcast.emit('enter', name);
 
+        var user_list = [];
+
+        for (var sock_id in io.sockets.connected) {
+            if (io.sockets.connected[sock_id].username) {
+                user_list.push(io.sockets.connected[sock_id].username);
+            }
+        }
+
         io.emit("up_user_num", users_num);
+        socket.emit("user_list", user_list);
 
         socket.on('disconnect', function() {
             console.log('>user disconnected');

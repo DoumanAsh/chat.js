@@ -55,6 +55,36 @@ function createMsg(msg, name) {
     return li;
 }
 
+///Removes user_name from list of users.
+function removeUser(user_name) {
+    var user_list = document.getElementById('user_list');
+    var el_name = document.getElementById(user_name);
+
+    user_list.removeChild(el_name);
+}
+
+///Add user_name to list of users.
+///Pass reference to user_list in case of loops
+function addUserToList(user_name, user_list) {
+    if (!user_list) {
+        user_list = document.getElementById('user_list');
+    }
+
+    var li = document.createElement("li");
+    var span_name = document.createElement("span");
+
+    li.id = user_name;
+    span_name.className += "chat_name";
+    span_name.onclick = function() {
+        var text_box = document.getElementById('msg');
+        text_box.value = text_box.value + user_name + ": ";
+    };
+    span_name.appendChild(document.createTextNode(user_name));
+
+    li.appendChild(span_name);
+    user_list.appendChild(li);
+}
+
 function updateUserNum(num) {
     users_num.innerHTML = "Users online: " + num;
 }
@@ -85,6 +115,16 @@ window.onload = function() {
         updateUserNum(num);
     });
 
+    socket.on("user_list", function(list) {
+        var user_list = document.getElementById('user_list');
+
+        for (var i = 0; i < list.length; i++) {
+            var user_name = list[i];
+
+            addUserToList(user_name, user_list);
+        }
+    });
+
     socket.on("new_name", function(name) {
         document.getElementById('name').innerHTML = "Name: " + name;
         window.alert("Your name is already used. :(\nYou can stick with name: " + name);
@@ -93,10 +133,12 @@ window.onload = function() {
     socket.on('left', function(msg) {
         message_box.appendChild(createSys(msg.user_name + " left chat :("));
         updateUserNum(msg.user_num);
+        removeUser(msg.user_name);
     });
 
     socket.on('enter', function(name){
         message_box.appendChild(createSys(name + " enters chat"));
+        addUserToList(name);
     });
 
     socket.on('chat message', function(msg){

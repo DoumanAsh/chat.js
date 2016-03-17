@@ -7,11 +7,26 @@ body {
     font: 13px Helvetica, Arial;
 }
 
+#user_list {
+    list-style-type: none;
+    padding: 5px;
+    border-style: solid;
+    border-width: 5px;
+    height: 100%;
+    width: 100px;
+    margin-bottom: 50px;
+    right: 0;
+    top: 65px;
+    position: fixed;
+    float: right;
+}
+
 #messages {
     list-style-type: none;
     margin: 0;
     padding: 0;
     margin-bottom: 50px;
+    margin-right: 105px;
     word-wrap: break-word;
 }
 #messages li {
@@ -41,7 +56,8 @@ body {
     bottom: 0;
     width: 100%;
 }
-.chat form input { border: 0;
+.chat form input {
+    border: 0;
     padding: 10px;
     width: 89%;
     margin-right: .5%;
