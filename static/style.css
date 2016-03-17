@@ -67,6 +67,7 @@ body {
     background: rgb(130, 224, 255);
     border: none;
     padding: 10px;
+    cursor: pointer;
 }
 
 .sys_warning {
