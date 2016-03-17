@@ -34,6 +34,19 @@ function createSys(msg) {
     return li;
 }
 
+///Sends warning msg to user.
+function warningMsg(msg) {
+    var li = createLi();
+
+    var span_name = document.createElement("span");
+    span_name.className += "sys_warning";
+    span_name.appendChild(document.createTextNode(msg));
+    li.appendChild(span_name);
+
+    return li;
+
+}
+
 ///Creates list element with message.
 function createMsg(msg, name) {
     var li = createLi();
@@ -127,7 +140,7 @@ window.onload = function() {
 
     socket.on("new_name", function(name) {
         document.getElementById('name').innerHTML = "Name: " + name;
-        window.alert("Your name is already used. :(\nYou can stick with name: " + name);
+        message_box.appendChild(warningMsg("Your name is already used. You can stick with name: " + name));
     });
 
     socket.on('left', function(msg) {
