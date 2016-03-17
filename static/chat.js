@@ -15,11 +15,16 @@ function sendMsg() {
     }
 }
 
+///Creates li for messages
+function createLi() {
+    var li = document.createElement("li");
+    li.appendChild(document.createTextNode((new Date()).strftime("%H:%M:%S ")));
+    return li;
+}
+
 ///Creates system message
 function createSys(msg) {
-    var li = document.createElement("li");
-
-    li.appendChild(document.createTextNode((new Date()).strftime("%H:%M:%S ")));
+    var li = createLi();
 
     var span_name = document.createElement("span");
     span_name.className += "sys_msg";
@@ -31,9 +36,8 @@ function createSys(msg) {
 
 ///Creates list element with message.
 function createMsg(msg, name) {
-    var li = document.createElement("li");
+    var li = createLi();
 
-    li.appendChild(document.createTextNode((new Date()).strftime("%H:%M:%S ")));
     if (name) {
         var span_name = document.createElement("span");
 
