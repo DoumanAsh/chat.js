@@ -53,6 +53,10 @@ body {
     padding: 10px;
 }
 
+.sys_msg {
+    color: #505050;
+}
+
 .chat_name {
     font-weight: bold;
     cursor: pointer;

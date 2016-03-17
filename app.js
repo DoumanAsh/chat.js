@@ -40,7 +40,7 @@ io.on('connection', function(socket) {
             io.emit('left', {user_name: socket.username, user_num: users_num});
         });
 
-        socket.on('chat message', function(msg){
+        socket.on('chat message', function(msg) {
           console.log('message: ' + msg);
           socket.broadcast.emit('chat message', {user_name: socket.username, msg: msg});
         });

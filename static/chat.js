@@ -15,6 +15,20 @@ function sendMsg() {
     }
 }
 
+///Creates system message
+function createSys(msg) {
+    var li = document.createElement("li");
+
+    li.appendChild(document.createTextNode((new Date()).strftime("%H:%M:%S ")));
+
+    var span_name = document.createElement("span");
+    span_name.className += "sys_msg";
+    span_name.appendChild(document.createTextNode(msg));
+    li.appendChild(span_name);
+
+    return li;
+}
+
 ///Creates list element with message.
 function createMsg(msg, name) {
     var li = document.createElement("li");
@@ -35,11 +49,6 @@ function createMsg(msg, name) {
     }
     li.appendChild(document.createTextNode(msg));
     return li;
-}
-
-///Adds message to chat window
-function addMsg(msg, name) {
-    message_box.appendChild(createMsg(msg, name));
 }
 
 function updateUserNum(num) {
@@ -78,16 +87,16 @@ window.onload = function() {
     });
 
     socket.on('left', function(msg) {
-        addMsg(">" + msg.user_name + " left chat :(");
+        message_box.appendChild(createSys(msg.user_name + " left chat :("));
         updateUserNum(msg.user_num);
     });
 
     socket.on('enter', function(name){
-        addMsg(">" + name + " enters chat");
+        message_box.appendChild(createSys(name + " enters chat"));
     });
 
     socket.on('chat message', function(msg){
-        addMsg(msg.msg, msg.user_name);
+        message_box.appendChild(createMsg(msg.msg, msg.user_name));
     });
 
     document.getElementById('msg').focus();
