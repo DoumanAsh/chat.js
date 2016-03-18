@@ -25,9 +25,13 @@ body {
     list-style-type: none;
     margin: 0;
     padding: 0;
-    margin-bottom: 50px;
-    margin-right: 105px;
+    top: 65px;
+    left: 0px;
+    bottom: 50px;
+    right: 101px;
+    position: fixed;
     word-wrap: break-word;
+    overflow-y: scroll;
 }
 #messages li {
     padding: 5px 10px;
