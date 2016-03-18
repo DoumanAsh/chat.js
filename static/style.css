@@ -3,74 +3,83 @@
     padding: 0;
     box-sizing: border-box;
 }
+
 body {
     font: 13px Helvetica, Arial;
 }
 
-#user_list {
-    list-style-type: none;
-    padding: 5px;
-    border-style: solid;
-    border-width: 5px;
-    height: 100%;
-    width: 100px;
-    margin-bottom: 50px;
-    right: 0;
-    top: 65px;
+#wrapper {
+    display: flex;
+    flex-flow: column;
+    /* Flex-wrapper should be streched at max for dynamic chat-box */
     position: fixed;
-    float: right;
+    bottom: 0;
+    top: 0;
+    left: 0;
+    right: 0;
+}
+
+#header {
+    padding: 5px;
+    background: rgb(130, 224, 255);
+    border-bottom: solid;
+}
+
+#chat {
+    flex: 1 1 80%;
+    display: flex;
+    width: 100%;
+    overflow: auto;
 }
 
 #messages {
+    flex: 1 1 80%;
     list-style-type: none;
     margin: 0;
     padding: 0;
-    top: 65px;
-    left: 0px;
-    bottom: 50px;
-    right: 101px;
-    position: fixed;
     word-wrap: break-word;
-    overflow-y: scroll;
+    overflow-y: auto;
 }
+
 #messages li {
     padding: 5px 10px;
 }
+
 #messages li:nth-child(odd) {
     background: #eee;
 }
 
-#header {
-    overflow: auto;
+#user_list {
+    flex: 0 0 10em;
+    list-style-type: none;
     padding: 5px;
-    background: rgb(130, 224, 255);
-    position: fixed;
-    height: auto;
+    border-style: solid;
+    border-width: 5px;
+    border-top: unset;
+    border-bottom: unset;
+    overflow: auto;
+}
+
+#ff {
+    display: flex;
     width: 100%;
-}
-
-.chat {
-    margin-top: 65px;
-}
-
-.chat form {
     background: #000;
     padding: 5px;
-    position: fixed;
-    bottom: 0;
-    width: 100%;
 }
-.chat form input {
+
+#ff input {
+    flex: 1;
     border: 0;
     padding: 10px;
-    width: 89%;
     margin-right: .5%;
 }
-.chat form button {
-    width: 10%;
+
+#ff button {
+    flex: 0 10em;
     background: rgb(130, 224, 255);
     border: none;
     padding: 10px;
+    margin: .5%;
     cursor: pointer;
 }
 

@@ -4,15 +4,16 @@ script(src="../strftime-min.js")
 script(src="../chat.js")
 
 body
-    div(id="header")
-        h1= title
-        h2(class="left", id="users_num")= "Users online: "
-        h2(class="right", id="name")= "Name: "
+    div(id="wrapper")
+        div(id="header")
+            h1= title
+            h2(class="left", id="users_num")= "Users online: "
+            h2(class="right", id="name")= "Name: "
 
-    hr
-    div(class="chat")
-        ul(id="messages")
-        ul(id="user_list")
+        div(id="chat")
+            ul(id="messages")
+            ul(id="user_list")
+
         form(id="ff", action="", onsubmit="return false")
             input(id="msg", autocomplete="off")
-            button(type="submit") Send
+            button(class="right", type="submit") Send
