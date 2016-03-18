@@ -141,6 +141,7 @@ window.onload = function() {
     socket.on("new_name", function(name) {
         document.getElementById('name').innerHTML = "Name: " + name;
         message_box.appendChild(warningMsg("Your name is already used. You can stick with name: " + name));
+        my_name = name;
     });
 
     socket.on('left', function(msg) {
