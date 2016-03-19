@@ -91,6 +91,7 @@ function addUserToList(user_name, user_list) {
     span_name.onclick = function() {
         var text_box = document.getElementById('msg');
         text_box.value = text_box.value + user_name + ": ";
+        document.getElementById('msg').focus();
     };
     span_name.appendChild(document.createTextNode(user_name));
 
