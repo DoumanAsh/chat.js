@@ -8,10 +8,21 @@ body {
     font: 13px Helvetica, Arial;
 }
 
+/* Flex layot
+ *
+ * --------------------------
+ *       HEADER
+ * --------------------------
+ * MESSAGES     | USER LIST    - Chat
+ * --------------------------
+ * INPUT        | BUTTON       - Form ff
+ * --------------------------
+ *
+ * */
 #wrapper {
+    /* Flex-wrapper should be streched at max for dynamic chat-box. */
     display: flex;
     flex-flow: column;
-    /* Flex-wrapper should be streched at max for dynamic chat-box */
     position: fixed;
     bottom: 0;
     top: 0;
@@ -26,6 +37,7 @@ body {
 }
 
 #chat {
+    /* Give to list of users and messages 80% of base space. */
     flex: 1 1 80%;
     display: flex;
     width: 100%;
@@ -33,6 +45,8 @@ body {
 }
 
 #messages {
+    /* Leave messages the most spaces in chat div.
+     * Only vertical overflow. */
     flex: 1 1 80%;
     list-style-type: none;
     margin: 0;
@@ -50,17 +64,23 @@ body {
 }
 
 #user_list {
+    /* Get list of users relative to font size
+     * but allow overflow just in case. */
     flex: 0 0 10em;
     list-style-type: none;
     padding: 5px;
     border-style: solid;
     border-width: 5px;
+    /* Unset border as above/below element already has it. */
     border-top: unset;
     border-bottom: unset;
     overflow: auto;
 }
 
 #ff {
+    /* User input and button should be streched.
+     * Leave input without specific size,
+     * but give button size so that input gets auto-max thanks to flex. */
     display: flex;
     width: 100%;
     background: #000;
@@ -83,6 +103,7 @@ body {
     cursor: pointer;
 }
 
+/* Message types */
 .sys_warning {
     color: #D80000;
 }
