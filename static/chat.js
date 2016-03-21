@@ -64,7 +64,18 @@ function createMsg(msg, name) {
 
         li.appendChild(span_name);
     }
-    li.appendChild(document.createTextNode(msg));
+
+    if (msg.indexOf(my_name) > -1) {
+        var span_msg = document.createElement("span");
+        span_msg.className += "sys_pm";
+        span_msg.appendChild(document.createTextNode(msg));
+        msg = span_msg;
+    }
+    else {
+        msg = document.createTextNode(msg);
+    }
+
+    li.appendChild(msg);
     return li;
 }
 

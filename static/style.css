@@ -113,6 +113,10 @@ body {
     color: #505050;
 }
 
+.sys_pm {
+    color: #FF8C00;
+}
+
 .chat_name {
     font-weight: bold;
     cursor: pointer;
